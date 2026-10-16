@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Suco de Morango com Chia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --principal:   #8B1A2F;
+    --clara:       #A82039;
+    --suave:       #fdeef1;
+    --borda-qt:    #f5c0cb;
+    --bg-qt:       #fff5f7;
+    --destaque:    #c8a96e;
+    --vtexto:      #f4a0b0;
+    --texto:       #1a1a1a;
+    --texto-suave: #4a5568;
+    --borda:       #e2e8f0;
+  }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #F9F5EF;
+    color: var(--texto);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.06), 0 8px 40px rgba(0,0,0,0.10);
+    min-height: 100vh;
+  }
+  .topo-respiro {
+    background: var(--principal);
+    height: 32px;
+  }
+  .hero {
+    position: relative;
+    height: 360px;
+    background: var(--principal);
+    overflow: hidden;
+  }
+  .hero-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      rgba(0,0,0,0.00) 0%,
+      rgba(0,0,0,0.30) 52%,
+      rgba(0,0,0,0.82) 100%
+    );
+  }
+  .hero-content {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 24px 32px 30px;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #c8a96e;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    padding: 4px 13px;
+    border-radius: 30px;
+    margin-bottom: 12px;
+  }
+  .hero-titulo {
+    font-family: 'Lora', serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.22;
+    color: white;
+    margin-bottom: 8px;
+  }
+  .hero-titulo em {
+    font-style: italic;
+    color: #f4a0b0;
+  }
+  .hero-desc {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.6;
+    max-width: 420px;
+  }
+  .beneficios {
+    background: var(--principal);
+    padding: 22px 32px 28px;
+  }
+  .beneficios-titulo {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 14px;
+  }
+  .beneficios-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .beneficio-card {
+    background: rgba(255,255,255,0.09);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 10px;
+    padding: 13px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .beneficio-icone {
+    font-size: 19px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .beneficio-texto {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
+  }
+  .beneficio-texto strong {
+    display: block;
+    font-weight: 600;
+    color: #f4a0b0;
+    font-size: 12px;
+    margin-bottom: 3px;
+  }
+  .quando-tomar {
+    background: var(--bg-qt);
+    border-top: 1px solid var(--borda-qt);
+    border-bottom: 1px solid var(--borda-qt);
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .quando-icone { font-size: 24px; flex-shrink: 0; }
+  .quando-label {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--clara);
+    margin-bottom: 3px;
+  }
+  .quando-texto {
+    font-size: 14px;
+    color: var(--texto);
+    font-weight: 500;
+    line-height: 1.45;
+  }
+  .quando-sub {
+    font-size: 12.5px;
+    color: var(--texto-suave);
+    margin-top: 2px;
+  }
+  .corpo { padding: 32px 32px 44px; }
+  .sec-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--clara);
+    margin-bottom: 16px;
+  }
+  .sec-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--borda);
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--borda);
+    margin: 28px 0;
+  }
+  .ing-lista { list-style: none; margin-bottom: 4px; }
+  .ing-item {
+    display: flex;
+    align-items: baseline;
+    padding: 9px 0;
+    border-bottom: 1px solid #f0f4f2;
+    font-size: 14.5px;
+  }
+  .ing-item:last-child { border-bottom: none; }
+  .ing-qtd {
+    min-width: 130px;
+    flex-shrink: 0;
+    font-weight: 600;
+    color: var(--clara);
+    font-size: 13.5px;
+  }
+  .ing-nome { color: var(--texto-suave); }
+  .preparo-lista { list-style: none; }
+  .preparo-item {
+    display: flex;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f4f2;
+    align-items: flex-start;
+  }
+  .preparo-item:last-child { border-bottom: none; }
+  .preparo-num {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    background: var(--principal);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 1px;
+  }
+  .preparo-texto {
+    font-size: 14.5px;
+    color: var(--texto-suave);
+    line-height: 1.7;
+    padding-top: 3px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topo-respiro"></div>
+
+  <div class="hero">
+    <img class="hero-img"
+      src="data:image/jpeg;base64,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"
+      alt="Suco rosa de morango com sementes de chia num copo"
+      onerror="this.style.display='none'"/>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">🍓 Café da manhã · 5 min</div>
+      <h1 class="hero-titulo">Suco de <em>Morango com Chia</em></h1>
+      <p class="hero-desc">Parece sobremesa, mas ajuda você a se sentir saciada por mais tempo e a segurar a vontade de beliscar.</p>
+    </div>
+  </div>
+
+  <div class="beneficios">
+    <div class="beneficios-titulo">O que essa receita faz pelo seu corpo</div>
+    <div class="beneficios-grid">
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🍓</span>
+        <div class="beneficio-texto">
+          <strong>Vitamina C que emagrece</strong>
+          O morango é rico em vitamina C, que o corpo precisa para queimar gordura durante o exercício.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🫘</span>
+        <div class="beneficio-texto">
+          <strong>Fibra que segura o açúcar</strong>
+          A chia forma um gel no estômago que impede o açúcar de cair direto na corrente sanguínea.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">😌</span>
+        <div class="beneficio-texto">
+          <strong>Sem picos de insulina</strong>
+          A combinação de fibra e antioxidantes do morango mantém a insulina em níveis baixos e estáveis.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🌸</span>
+        <div class="beneficio-texto">
+          <strong>Pele e intestino melhores</strong>
+          Os antioxidantes do morango reduzem a inflamação que afeta a pele e o funcionamento do intestino.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quando-tomar">
+    <span class="quando-icone">⏰</span>
+    <div>
+      <div class="quando-label">Quando tomar</div>
+      <div class="quando-texto">No café da manhã ou no lanche da tarde</div>
+      <div class="quando-sub">Deixe a chia de molho 10 minutos antes para o gel se formar</div>
+    </div>
+  </div>
+
+  <div class="corpo">
+    <div class="sec-label">Ingredientes</div>
+    <ul class="ing-lista">
+      <li class="ing-item">
+        <span class="ing-qtd">10 unidades</span>
+        <span class="ing-nome">morangos frescos (lavados e sem o cabo)</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">1 col. de sopa</span>
+        <span class="ing-nome">chia (deixe de molho em 3 col. de água por 10 min antes)</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">200 ml</span>
+        <span class="ing-nome">água gelada</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">suco de ½</span>
+        <span class="ing-nome">limão tahiti</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">stevia a gosto</span>
+        <span class="ing-nome">para adoçar</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">gelo</span>
+        <span class="ing-nome">a gosto</span>
+      </li>
+    </ul>
+    <hr class="divider"/>
+    <div class="sec-label">Modo de preparo</div>
+    <ol class="preparo-lista">
+      <li class="preparo-item">
+        <span class="preparo-num">1</span>
+        <span class="preparo-texto">Deixe a chia de molho em 3 colheres de água por 10 minutos até virar um gel.</span>
+      </li>
+      <li class="preparo-item">
+        <span class="preparo-num">2</span>
+        <span class="preparo-texto">Bata os morangos com a água e o limão no liquidificador por 1 minuto.</span>
+      </li>
+      <li class="preparo-item">
+        <span class="preparo-num">3</span>
+        <span class="preparo-texto">Adicione o gel de chia, misture bem com uma colher e sirva com gelo.</span>
+      </li>
+    </ol>
+  </div>
+
+</div>
+</body>
+</html>

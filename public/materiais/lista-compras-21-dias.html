@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Lista de Compras dos 21 Dias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --principal:#2D6B4A; --clara:#357A55; --suave:#E8F5EE; --borda:#A8D8BB;
+    --bg-qt:#F2FBF5; --destaque:#c8a96e; --vtexto:#90CCA8;
+    --texto:#1a1a1a; --t-suave:#4a5568; --borda-sutil:#e2e8f0;
+  }
+  body { font-family:'Inter',-apple-system,sans-serif; background:#F9F5EF; color:var(--texto); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .page { max-width:600px; margin:0 auto; background:#fff; box-shadow:0 0 0 1px rgba(0,0,0,0.06),0 8px 40px rgba(0,0,0,0.10); min-height:100vh; }
+
+  /* HERO (faixa verde, sem foto) */
+  .topo-respiro { background:var(--principal); height:24px; }
+  .hero { background:var(--principal); padding:6px 32px 28px; position:relative; }
+  .hero-emoji { font-size:40px; line-height:1; margin-bottom:10px; }
+  .hero-tag { display:inline-flex; align-items:center; gap:6px; background:#c8a96e; color:#fff; font-size:10px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; padding:4px 13px; border-radius:30px; margin-bottom:12px; }
+  .hero-titulo { font-family:'Lora',serif; font-size:28px; font-weight:700; line-height:1.22; color:#fff; margin-bottom:10px; }
+  .hero-titulo em { font-style:italic; color:var(--vtexto); }
+  .hero-desc { font-size:13.5px; color:rgba(255,255,255,0.85); line-height:1.65; }
+
+  /* INTRO */
+  .intro { padding:24px 32px 8px; }
+  .intro p { font-size:14.5px; color:var(--t-suave); line-height:1.7; }
+
+  /* CORPO */
+  .corpo { padding:16px 32px 20px; }
+  .sec { border:1.5px solid var(--borda-sutil); border-radius:14px; overflow:hidden; margin-bottom:16px; }
+  .sec-header { background:var(--suave); padding:14px 18px; display:flex; align-items:center; gap:12px; border-bottom:1px solid var(--borda-sutil); }
+  .sec-emoji { font-size:22px; line-height:1; flex-shrink:0; }
+  .sec-titulo { font-family:'Lora',serif; font-size:17px; font-weight:700; color:var(--texto); line-height:1.25; }
+  .sec-sub { display:block; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; color:var(--clara); margin-top:2px; }
+  .sec-body { padding:8px 18px 14px; }
+
+  /* ITENS (checklist) */
+  .item { display:flex; align-items:flex-start; gap:12px; padding:11px 2px; border-bottom:1px solid #f1f1ee; cursor:pointer; }
+  .item:last-child { border-bottom:none; }
+  .item input { appearance:none; -webkit-appearance:none; width:22px; height:22px; flex-shrink:0; margin-top:1px; border:2px solid var(--borda); border-radius:7px; background:#fff; position:relative; cursor:pointer; transition:all .15s; }
+  .item input:checked { background:var(--principal); border-color:var(--principal); }
+  .item input:checked::after { content:''; position:absolute; left:6px; top:2px; width:6px; height:11px; border:solid #fff; border-width:0 2.5px 2.5px 0; transform:rotate(45deg); }
+  .item-txt { font-size:14.5px; color:var(--texto); line-height:1.5; transition:opacity .15s; }
+  .item-txt b { font-weight:700; }
+  .item-txt span { color:var(--t-suave); font-size:13px; }
+  .item input:checked + .item-txt { opacity:.5; text-decoration:line-through; text-decoration-color:var(--borda); }
+
+  /* TEXTO simples dentro de seção */
+  .sec-body p { font-size:14px; color:var(--t-suave); line-height:1.7; padding:6px 2px; }
+  .sec-body p b { color:var(--texto); font-weight:600; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; padding:8px 2px 2px; }
+  .chip { background:var(--bg-qt); border:1px solid var(--borda); color:var(--clara); font-size:12.5px; font-weight:600; padding:6px 12px; border-radius:20px; }
+
+  /* RESUMO */
+  .resumo { margin:4px 32px 8px; background:var(--principal); border-radius:16px; padding:20px 22px; }
+  .resumo-label { font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--vtexto); margin-bottom:8px; }
+  .resumo-txt { font-size:14.5px; color:#fff; line-height:1.7; }
+  .resumo-txt b { color:var(--vtexto); }
+
+  .rodape { text-align:center; padding:26px 32px 34px; color:#9aa39d; font-size:11px; letter-spacing:0.5px; }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="topo-respiro"></div>
+    <div class="hero">
+      <div class="hero-emoji">🛒</div>
+      <span class="hero-tag">Segredo da Insulina</span>
+      <h1 class="hero-titulo">Lista de Compras<br>dos <em>21 Dias</em></h1>
+      <p class="hero-desc">Tudo o que você precisa pra fazer os 21 dias completos. Compre uma vez os secos (duram o programa todo) e reponha as frutas e ervas frescas por semana.</p>
+    </div>
+
+    <div class="intro">
+      <p>O programa é um protocolo de <b>bebidas</b> — os 3 Segredos da Insulina, o shot ao acordar, a água com vinagre ou limão antes das refeições e o chá calmante à noite — somado a uma boa <b>fonte de proteína</b> nas refeições. Vá marcando cada item conforme coloca no carrinho. ✅</p>
+    </div>
+
+    <div class="corpo">
+
+      <div class="sec">
+        <div class="sec-header"><span class="sec-emoji">⭐</span><div><span class="sec-titulo">Os essenciais</span><span class="sec-sub">A base dos 3 Segredos — usa todo dia</span></div></div>
+        <div class="sec-body">
+          <label class="item"><input type="checkbox"><span class="item-txt"><b>Chia</b> — 1 pacote de 200g. <span>Para o Gel Grego, 1 colher de sopa por dia.</span></span></label>
+          <label class="item"><input type="checkbox"><span class="item-txt"><b>Psyllium em pó</b> — 1 pote de 100g a 150g. <span>Para o Achocolatado da Insulina, ~5g por dia.</span></span></label>
+          <label class="item"><input type="checkbox"><span class="item-txt"><b>Cacau 100% em pó</b> — 1 pote de 200g. <span>Para o Achocolatado da Insulina.</span></span></label>
+          <label class="item"><input type="checkbox"><span class="item-txt"><b>Linhaça dourada moída</b> — 1 pacote de 200g. <span>Para o terceiro Segredo.</span></span></label>
+          <label class="item"><input type="checkbox"><span class="item-txt"><b>Vinagre de maçã</b> — 1 garrafa de 500ml. <span>Antes do almoço e do jantar, todo dia.</span></span></label>
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-header"><span class="sec-emoji">🧂</span><div><span class="sec-titulo">Especiarias secas</span><span class="sec-sub">Duram o mês todo</span></div></div>
+        <div class="sec-body">
+          <label class="item"><input type="checkbox"><span class="item-txt"><b>Canela em pó</b> — 1 vidro maior. <span>Usa bastante: nos Segredos, shots, chás e na água com limão.</span></span></label>
+          <label class="item"><input type="checkbox"><span class="item-txt"><b>Cúrcuma em pó</b> (açafrão da terra) — 1 pote. <span>Para o Shot Dourado.</span></span></label>
+          <label class="item"><input type="checkbox"><span class="item-txt"><b>Gengibre em pó</b> — 1 pote. <span>Para os shots termogênicos.</span></span></label>
+          <label class="item"><input type="checkbox"><span class="item-txt"><b>Pau de canela</b> (de preferência do Ceilão) — 1 pacotinho. <span>Para o chá de canela e o Shot Canela.</span></span></label>
+          <label class="item"><input type="checkbox"><span class="item-txt"><b>Cravo da índia + anis estrelado</b> — 1 pacotinho de cada. <span>Para as versões do chá de canela.</span></span></label>
+          <label class="item"><input type="checkbox"><span class="item-txt"><b>Pimenta do reino</b> — geralmente já se tem em casa. <span>Para o leite dourado (Golden Milk).</span></span></label>
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-header"><span class="sec-emoji">🍋</span><div><span class="sec-titulo">Frutas e frescos</span><span class="sec-sub">Compre por semana pra ficar fresquinho</span></div></div>
+        <div class="sec-body">
+          <label class="item"><input type="checkbox"><span class="item-txt"><b>Limão</b> — 15 a 20 no total. <span>Para a água com limão e os chás, quase todo dia.</span></span></label>
+          <label class="item"><input type="checkbox"><span class="item-txt"><b>Gengibre fresco (raiz)</b> — 1 pedaço. <span>Para shots e chás.</span></span></label>
+          <label class="item"><input type="checkbox"><span class="item-txt"><b>Hortelã fresca</b> — 1 maço. <span>Para o shot e o chá de hortelã.</span></span></label>
+          <label class="item"><input type="checkbox"><span class="item-txt"><b>Beterraba</b> — 1 unidade. <span>Para o Shot Detox de beterraba.</span></span></label>
+          <label class="item"><input type="checkbox"><span class="item-txt"><b>Maçã verde</b> — 1 unidade. <span>Para o Shot Detox, suaviza o sabor.</span></span></label>
+          <label class="item"><input type="checkbox"><span class="item-txt"><b>Água de coco</b> — 2 a 3 unidades. <span>Variação da água antes das refeições.</span></span></label>
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-header"><span class="sec-emoji">🍵</span><div><span class="sec-titulo">Chás e ervas</span><span class="sec-sub">Escolha os que gostar — dá pra variar à noite</span></div></div>
+        <div class="sec-body">
+          <div class="chips">
+            <span class="chip">Camomila</span><span class="chip">Melissa (cidreira)</span><span class="chip">Erva doce</span><span class="chip">Hibisco</span><span class="chip">Chá verde</span><span class="chip">Dente de leão</span><span class="chip">Maracujá</span><span class="chip">Lavanda culinária</span>
+          </div>
+          <p><b>Mel</b> pra adoçar levinho, se quiser — é opcional.</p>
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-header"><span class="sec-emoji">🥛</span><div><span class="sec-titulo">O líquido dos Segredos</span><span class="sec-sub">Escolha 1 da sua preferência</span></div></div>
+        <div class="sec-body">
+          <div class="chips">
+            <span class="chip">Água</span><span class="chip">Chá de canela sem açúcar</span><span class="chip">Leite vegetal sem açúcar</span><span class="chip">Leite sem lactose</span><span class="chip">Leite integral</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-header"><span class="sec-emoji">🍗</span><div><span class="sec-titulo">Para as refeições</span><span class="sec-sub">A dica de ouro do programa</span></div></div>
+        <div class="sec-body">
+          <p>Garanta uma <b>fonte de proteína</b> no almoço e no jantar: ovos, frango, peixe, carne magra ou proteína vegetal. É o que segura a fome e ajuda no emagrecimento. Complete com <b>legumes e folhas</b> à vontade.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="resumo">
+      <div class="resumo-label">O que não pode faltar</div>
+      <p class="resumo-txt"><b>Chia, psyllium, cacau 100%, linhaça dourada, vinagre de maçã, canela, cúrcuma, gengibre, limão</b> e o líquido de preferência. Com isso você já faz o protocolo inteiro dos 21 dias.</p>
+    </div>
+
+    <div class="rodape">Clube do Segredo · Segredo da Insulina</div>
+  </div>
+
+<script>
+  // Marca/desmarca persistente (por item) — some ao trocar de aparelho, é só conveniência
+  (function () {
+    try {
+      var KEY = 'listaCompras21d';
+      var itens = document.querySelectorAll('.item input[type=checkbox]');
+      var salvo = JSON.parse(localStorage.getItem(KEY) || '{}');
+      itens.forEach(function (el, i) {
+        if (salvo[i]) el.checked = true;
+        el.addEventListener('change', function () {
+          salvo[i] = el.checked;
+          try { localStorage.setItem(KEY, JSON.stringify(salvo)); } catch (e) {}
+        });
+      });
+    } catch (e) {}
+  })();
+</script>
+</body>
+</html>

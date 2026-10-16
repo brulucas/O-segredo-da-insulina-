@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Suco de Beterraba com Laranja</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --principal:   #7B1A1A;
+    --clara:       #962020;
+    --suave:       #fdeaea;
+    --borda-qt:    #f5c8c8;
+    --bg-qt:       #fef5f5;
+    --destaque:    #c8a96e;
+    --vtexto:      #f4a8a8;
+    --texto:       #1a1a1a;
+    --texto-suave: #4a5568;
+    --borda:       #e2e8f0;
+  }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #F9F5EF;
+    color: var(--texto);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.06), 0 8px 40px rgba(0,0,0,0.10);
+    min-height: 100vh;
+  }
+  .topo-respiro {
+    background: var(--principal);
+    height: 32px;
+  }
+  .hero {
+    position: relative;
+    height: 360px;
+    background: var(--principal);
+    overflow: hidden;
+  }
+  .hero-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      rgba(0,0,0,0.00) 0%,
+      rgba(0,0,0,0.30) 52%,
+      rgba(0,0,0,0.82) 100%
+    );
+  }
+  .hero-content {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 24px 32px 30px;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #c8a96e;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    padding: 4px 13px;
+    border-radius: 30px;
+    margin-bottom: 12px;
+  }
+  .hero-titulo {
+    font-family: 'Lora', serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.22;
+    color: white;
+    margin-bottom: 8px;
+  }
+  .hero-titulo em {
+    font-style: italic;
+    color: #f4a8a8;
+  }
+  .hero-desc {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.6;
+    max-width: 420px;
+  }
+  .beneficios {
+    background: var(--principal);
+    padding: 22px 32px 28px;
+  }
+  .beneficios-titulo {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 14px;
+  }
+  .beneficios-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .beneficio-card {
+    background: rgba(255,255,255,0.09);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 10px;
+    padding: 13px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .beneficio-icone {
+    font-size: 19px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .beneficio-texto {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
+  }
+  .beneficio-texto strong {
+    display: block;
+    font-weight: 600;
+    color: #f4a8a8;
+    font-size: 12px;
+    margin-bottom: 3px;
+  }
+  .quando-tomar {
+    background: var(--bg-qt);
+    border-top: 1px solid var(--borda-qt);
+    border-bottom: 1px solid var(--borda-qt);
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .quando-icone { font-size: 24px; flex-shrink: 0; }
+  .quando-label {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--clara);
+    margin-bottom: 3px;
+  }
+  .quando-texto {
+    font-size: 14px;
+    color: var(--texto);
+    font-weight: 500;
+    line-height: 1.45;
+  }
+  .quando-sub {
+    font-size: 12.5px;
+    color: var(--texto-suave);
+    margin-top: 2px;
+  }
+  .corpo { padding: 32px 32px 44px; }
+  .sec-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--clara);
+    margin-bottom: 16px;
+  }
+  .sec-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--borda);
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--borda);
+    margin: 28px 0;
+  }
+  .ing-lista { list-style: none; margin-bottom: 4px; }
+  .ing-item {
+    display: flex;
+    align-items: baseline;
+    padding: 9px 0;
+    border-bottom: 1px solid #f0f4f2;
+    font-size: 14.5px;
+  }
+  .ing-item:last-child { border-bottom: none; }
+  .ing-qtd {
+    min-width: 130px;
+    flex-shrink: 0;
+    font-weight: 600;
+    color: var(--clara);
+    font-size: 13.5px;
+  }
+  .ing-nome { color: var(--texto-suave); }
+  .preparo-lista { list-style: none; }
+  .preparo-item {
+    display: flex;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f4f2;
+    align-items: flex-start;
+  }
+  .preparo-item:last-child { border-bottom: none; }
+  .preparo-num {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    background: var(--principal);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 1px;
+  }
+  .preparo-texto {
+    font-size: 14.5px;
+    color: var(--texto-suave);
+    line-height: 1.7;
+    padding-top: 3px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topo-respiro"></div>
+
+  <div class="hero">
+    <img class="hero-img"
+      src="data:image/jpeg;base64,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"
+      alt="Suco vermelho de beterraba com laranja"
+      onerror="this.style.display='none'"/>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">❤️ Qualquer hora · 5 min</div>
+      <h1 class="hero-titulo">Suco de <em>Beterraba com Laranja</em></h1>
+      <p class="hero-desc">Uma bebida colorida e nutritiva para ajudar você a se sentir mais disposta durante o dia.</p>
+    </div>
+  </div>
+
+  <div class="beneficios">
+    <div class="beneficios-titulo">O que essa receita faz pelo seu corpo</div>
+    <div class="beneficios-grid">
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🩸</span>
+        <div class="beneficio-texto">
+          <strong>Circulação melhorada</strong>
+          O nitrato da beterraba dilata os vasos e melhora o transporte de nutrientes para as células.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🔥</span>
+        <div class="beneficio-texto">
+          <strong>Queima de gordura ativada</strong>
+          Com melhor circulação, o oxigênio chega mais fácil aos músculos e a queima de gordura aumenta.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">📉</span>
+        <div class="beneficio-texto">
+          <strong>Insulina mais baixa</strong>
+          A beterraba crua tem compostos que melhoram a sensibilidade do corpo à insulina.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">💪</span>
+        <div class="beneficio-texto">
+          <strong>Mais disposição</strong>
+          Você sente mais energia para o dia a dia, o que ajuda a se mover mais e emagrecer mais rápido.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quando-tomar">
+    <span class="quando-icone">⏰</span>
+    <div>
+      <div class="quando-label">Quando tomar</div>
+      <div class="quando-texto">A qualquer hora do dia, inclusive antes de caminhar</div>
+      <div class="quando-sub">Tomar antes de uma caminhada potencializa ainda mais o efeito</div>
+    </div>
+  </div>
+
+  <div class="corpo">
+    <div class="sec-label">Ingredientes</div>
+    <ul class="ing-lista">
+      <li class="ing-item">
+        <span class="ing-qtd">½ unidade média</span>
+        <span class="ing-nome">beterraba crua (descascada e cortada)</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">1 unidade</span>
+        <span class="ing-nome">laranja (suco, sem adição de açúcar)</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">1 rodela fina</span>
+        <span class="ing-nome">gengibre fresco (cerca de 1 cm)</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">200 ml</span>
+        <span class="ing-nome">água gelada</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">gelo</span>
+        <span class="ing-nome">a gosto</span>
+      </li>
+    </ul>
+    <hr class="divider"/>
+    <div class="sec-label">Modo de preparo</div>
+    <ol class="preparo-lista">
+      <li class="preparo-item">
+        <span class="preparo-num">1</span>
+        <span class="preparo-texto">Descasque e corte a beterraba em cubos pequenos.</span>
+      </li>
+      <li class="preparo-item">
+        <span class="preparo-num">2</span>
+        <span class="preparo-texto">Esprema a laranja e coloque o suco no liquidificador com a beterraba, o gengibre e a água.</span>
+      </li>
+      <li class="preparo-item">
+        <span class="preparo-num">3</span>
+        <span class="preparo-texto">Bata por 2 minutos em velocidade alta. Coe se preferir e sirva com gelo.</span>
+      </li>
+    </ol>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Smoothie de Cenoura com Gengibre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --principal:   #A84200;
+    --clara:       #C85000;
+    --suave:       #fff3ea;
+    --borda-qt:    #ffd0a0;
+    --bg-qt:       #fffaf5;
+    --destaque:    #c8a96e;
+    --vtexto:      #ffb870;
+    --texto:       #1a1a1a;
+    --texto-suave: #4a5568;
+    --borda:       #e2e8f0;
+  }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: #F9F5EF; color: var(--texto); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 600px; margin: 0 auto; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,0.06), 0 8px 40px rgba(0,0,0,0.10); min-height: 100vh; }
+  .topo-respiro { background: var(--principal); height: 32px; }
+  .hero { position: relative; height: 360px; background: var(--principal); overflow: hidden; }
+  .hero-img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; display: block; }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.30) 52%, rgba(0,0,0,0.82) 100%); }
+  .hero-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 32px 30px; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 6px; background: #c8a96e; color: white; font-size: 10px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; padding: 4px 13px; border-radius: 30px; margin-bottom: 12px; }
+  .hero-titulo { font-family: 'Lora', serif; font-size: 28px; font-weight: 700; line-height: 1.22; color: white; margin-bottom: 8px; }
+  .hero-titulo em { font-style: italic; color: #ffb870; }
+  .hero-desc { font-size: 13.5px; color: rgba(255,255,255,0.82); line-height: 1.6; max-width: 420px; }
+  .beneficios { background: var(--principal); padding: 22px 32px 28px; }
+  .beneficios-titulo { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 14px; }
+  .beneficios-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .beneficio-card { background: rgba(255,255,255,0.09); border: 1px solid rgba(255,255,255,0.14); border-radius: 10px; padding: 13px 14px; display: flex; align-items: flex-start; gap: 10px; }
+  .beneficio-icone { font-size: 19px; line-height: 1; flex-shrink: 0; margin-top: 2px; }
+  .beneficio-texto { font-size: 12.5px; color: rgba(255,255,255,0.85); line-height: 1.5; }
+  .beneficio-texto strong { display: block; font-weight: 600; color: #ffb870; font-size: 12px; margin-bottom: 3px; }
+  .quando-tomar { background: var(--bg-qt); border-top: 1px solid var(--borda-qt); border-bottom: 1px solid var(--borda-qt); padding: 18px 32px; display: flex; align-items: center; gap: 14px; }
+  .quando-icone { font-size: 24px; flex-shrink: 0; }
+  .quando-label { font-size: 9.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--clara); margin-bottom: 3px; }
+  .quando-texto { font-size: 14px; color: var(--texto); font-weight: 500; line-height: 1.45; }
+  .quando-sub { font-size: 12.5px; color: var(--texto-suave); margin-top: 2px; }
+  .corpo { padding: 32px 32px 44px; }
+  .sec-label { display: flex; align-items: center; gap: 10px; font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--clara); margin-bottom: 16px; }
+  .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--borda); }
+  .divider { border: none; border-top: 1px solid var(--borda); margin: 28px 0; }
+  .ing-lista { list-style: none; margin-bottom: 4px; }
+  .ing-item { display: flex; align-items: baseline; padding: 9px 0; border-bottom: 1px solid #f0f4f2; font-size: 14.5px; }
+  .ing-item:last-child { border-bottom: none; }
+  .ing-qtd { min-width: 130px; flex-shrink: 0; font-weight: 600; color: var(--clara); font-size: 13.5px; }
+  .ing-nome { color: var(--texto-suave); }
+  .preparo-lista { list-style: none; }
+  .preparo-item { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid #f0f4f2; align-items: flex-start; }
+  .preparo-item:last-child { border-bottom: none; }
+  .preparo-num { flex-shrink: 0; width: 28px; height: 28px; background: var(--principal); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; margin-top: 1px; }
+  .preparo-texto { font-size: 14.5px; color: var(--texto-suave); line-height: 1.7; padding-top: 3px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topo-respiro"></div>
+  <div class="hero">
+    <img class="hero-img" src="data:image/jpeg;base64,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"
+      alt="Suco laranja de cenoura com gengibre" onerror="this.style.display='none'"/>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">🥕 Café da manhã · 4 min</div>
+      <h1 class="hero-titulo">Smoothie de <em>Cenoura com Gengibre</em></h1>
+      <p class="hero-desc">Cremoso, nutritivo e prático. Uma ótima opção para quem quer mais saciedade e energia entre as refeições.</p>
+    </div>
+  </div>
+  <div class="beneficios">
+    <div class="beneficios-titulo">O que essa receita faz pelo seu corpo</div>
+    <div class="beneficios-grid">
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🫀</span>
+        <div class="beneficio-texto">
+          <strong>Fígado funcionando melhor</strong>
+          A cenoura tem betacaroteno que protege o fígado, que é o órgão que regula o açúcar no sangue.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🌡️</span>
+        <div class="beneficio-texto">
+          <strong>Efeito termogênico</strong>
+          O gengibre aumenta levemente a temperatura do corpo, o que acelera o gasto de energia.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">📉</span>
+        <div class="beneficio-texto">
+          <strong>Insulina respondendo melhor</strong>
+          A canela ajuda as células a absorverem o açúcar com menos insulina, facilitando o emagrecimento.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">💪</span>
+        <div class="beneficio-texto">
+          <strong>Mais disposição</strong>
+          Com o fígado saudável e a circulação ativa, você sente mais energia ao longo do dia.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="quando-tomar">
+    <span class="quando-icone">⏰</span>
+    <div>
+      <div class="quando-label">Quando tomar</div>
+      <div class="quando-texto">No café da manhã, antes de comer</div>
+      <div class="quando-sub">A cenoura crua preserva mais nutrientes do que cozida</div>
+    </div>
+  </div>
+  <div class="corpo">
+    <div class="sec-label">Ingredientes</div>
+    <ul class="ing-lista">
+      <li class="ing-item">
+        <span class="ing-qtd">2 unidades médias</span>
+        <span class="ing-nome">cenoura crua descascada e cortada</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">1 rodela</span>
+        <span class="ing-nome">gengibre fresco (2 cm)</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">1 col. de chá</span>
+        <span class="ing-nome">canela em pó</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">suco de ½</span>
+        <span class="ing-nome">limão tahiti</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">250 ml</span>
+        <span class="ing-nome">água gelada</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">gelo</span>
+        <span class="ing-nome">a gosto</span>
+      </li>
+    </ul>
+    <hr class="divider"/>
+    <div class="sec-label">Modo de preparo</div>
+    <ol class="preparo-lista">
+      <li class="preparo-item">
+        <span class="preparo-num">1</span>
+        <span class="preparo-texto">Descasque e corte a cenoura em pedaços pequenos para facilitar o liquidificador.</span>
+      </li>
+      <li class="preparo-item">
+        <span class="preparo-num">2</span>
+        <span class="preparo-texto">Coloque tudo no liquidificador e bata por 2 minutos em velocidade alta.</span>
+      </li>
+      <li class="preparo-item">
+        <span class="preparo-num">3</span>
+        <span class="preparo-texto">Coe se preferir e sirva com gelo.</span>
+      </li>
+    </ol>
+  </div>
+</div>
+</body>
+</html>

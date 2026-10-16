@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Água de Pepino com Hortelã</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --principal:   #1B6B4A;
+    --clara:       #267A57;
+    --suave:       #e4f5ee;
+    --borda-qt:    #b8dece;
+    --bg-qt:       #f0faf5;
+    --destaque:    #c8a96e;
+    --vtexto:      #88ccaa;
+    --texto:       #1a1a1a;
+    --texto-suave: #4a5568;
+    --borda:       #e2e8f0;
+  }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #F9F5EF;
+    color: var(--texto);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.06), 0 8px 40px rgba(0,0,0,0.10);
+    min-height: 100vh;
+  }
+  .topo-respiro {
+    background: var(--principal);
+    height: 32px;
+  }
+  .hero {
+    position: relative;
+    height: 360px;
+    background: var(--principal);
+    overflow: hidden;
+  }
+  .hero-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      rgba(0,0,0,0.00) 0%,
+      rgba(0,0,0,0.30) 52%,
+      rgba(0,0,0,0.82) 100%
+    );
+  }
+  .hero-content {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 24px 32px 30px;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #c8a96e;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    padding: 4px 13px;
+    border-radius: 30px;
+    margin-bottom: 12px;
+  }
+  .hero-titulo {
+    font-family: 'Lora', serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.22;
+    color: white;
+    margin-bottom: 8px;
+  }
+  .hero-titulo em {
+    font-style: italic;
+    color: #88ccaa;
+  }
+  .hero-desc {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.6;
+    max-width: 420px;
+  }
+  .beneficios {
+    background: var(--principal);
+    padding: 22px 32px 28px;
+  }
+  .beneficios-titulo {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 14px;
+  }
+  .beneficios-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .beneficio-card {
+    background: rgba(255,255,255,0.09);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 10px;
+    padding: 13px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .beneficio-icone {
+    font-size: 19px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .beneficio-texto {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
+  }
+  .beneficio-texto strong {
+    display: block;
+    font-weight: 600;
+    color: #88ccaa;
+    font-size: 12px;
+    margin-bottom: 3px;
+  }
+  .quando-tomar {
+    background: var(--bg-qt);
+    border-top: 1px solid var(--borda-qt);
+    border-bottom: 1px solid var(--borda-qt);
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .quando-icone { font-size: 24px; flex-shrink: 0; }
+  .quando-label {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--clara);
+    margin-bottom: 3px;
+  }
+  .quando-texto {
+    font-size: 14px;
+    color: var(--texto);
+    font-weight: 500;
+    line-height: 1.45;
+  }
+  .quando-sub {
+    font-size: 12.5px;
+    color: var(--texto-suave);
+    margin-top: 2px;
+  }
+  .corpo { padding: 32px 32px 44px; }
+  .sec-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--clara);
+    margin-bottom: 16px;
+  }
+  .sec-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--borda);
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--borda);
+    margin: 28px 0;
+  }
+  .ing-lista { list-style: none; margin-bottom: 4px; }
+  .ing-item {
+    display: flex;
+    align-items: baseline;
+    padding: 9px 0;
+    border-bottom: 1px solid #f0f4f2;
+    font-size: 14.5px;
+  }
+  .ing-item:last-child { border-bottom: none; }
+  .ing-qtd {
+    min-width: 130px;
+    flex-shrink: 0;
+    font-weight: 600;
+    color: var(--clara);
+    font-size: 13.5px;
+  }
+  .ing-nome { color: var(--texto-suave); }
+  .preparo-lista { list-style: none; }
+  .preparo-item {
+    display: flex;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f4f2;
+    align-items: flex-start;
+  }
+  .preparo-item:last-child { border-bottom: none; }
+  .preparo-num {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    background: var(--principal);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 1px;
+  }
+  .preparo-texto {
+    font-size: 14.5px;
+    color: var(--texto-suave);
+    line-height: 1.7;
+    padding-top: 3px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topo-respiro"></div>
+
+  <div class="hero">
+    <img class="hero-img"
+      src="data:image/jpeg;base64,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"
+      alt="Água de pepino com hortelã e limão num copo com gelo"
+      onerror="this.style.display='none'"/>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">💧 O dia todo · 3 min</div>
+      <h1 class="hero-titulo">Água de <em>Pepino com Hortelã</em></h1>
+      <p class="hero-desc">Uma água leve e saborosa para ajudar você a se manter hidratada e sentir o corpo menos inchado ao longo do dia.</p>
+    </div>
+  </div>
+
+  <div class="beneficios">
+    <div class="beneficios-titulo">O que essa receita faz pelo seu corpo</div>
+    <div class="beneficios-grid">
+      <div class="beneficio-card">
+        <span class="beneficio-icone">💧</span>
+        <div class="beneficio-texto">
+          <strong>Hidratação que ajuda a emagrecer</strong>
+          Muita gente confunde sede com fome. Ficar bem hidratada reduz a vontade de beliscar.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🫧</span>
+        <div class="beneficio-texto">
+          <strong>Desincha rápido</strong>
+          O pepino tem substâncias que ajudam o corpo a eliminar o líquido retido.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🌿</span>
+        <div class="beneficio-texto">
+          <strong>Menos vontade de comer doce</strong>
+          A hortelã reduz o apetite e dá uma sensação de frescor que ajuda a resistir aos doces.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">📉</span>
+        <div class="beneficio-texto">
+          <strong>Açúcar mais controlado</strong>
+          O limão tem ácido que retarda a absorção do açúcar, mantendo a insulina mais estável.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quando-tomar">
+    <span class="quando-icone">⏰</span>
+    <div>
+      <div class="quando-label">Quando tomar</div>
+      <div class="quando-texto">Durante o dia inteiro, no lugar de sucos industrializados</div>
+      <div class="quando-sub">Prepare uma jarra e beba ao longo do dia</div>
+    </div>
+  </div>
+
+  <div class="corpo">
+    <div class="sec-label">Ingredientes</div>
+    <ul class="ing-lista">
+      <li class="ing-item">
+        <span class="ing-qtd">½ unidade</span>
+        <span class="ing-nome">pepino japonês (fatiado, com casca)</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">10 folhas</span>
+        <span class="ing-nome">hortelã fresca</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">suco de 1</span>
+        <span class="ing-nome">limão tahiti</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">600 ml</span>
+        <span class="ing-nome">água filtrada gelada</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">gelo</span>
+        <span class="ing-nome">a gosto</span>
+      </li>
+    </ul>
+    <hr class="divider"/>
+    <div class="sec-label">Modo de preparo</div>
+    <ol class="preparo-lista">
+      <li class="preparo-item">
+        <span class="preparo-num">1</span>
+        <span class="preparo-texto">Fatie o pepino em rodelas finas, sem retirar a casca.</span>
+      </li>
+      <li class="preparo-item">
+        <span class="preparo-num">2</span>
+        <span class="preparo-texto">Coloque tudo no liquidificador e bata por 30 segundos.</span>
+      </li>
+      <li class="preparo-item">
+        <span class="preparo-num">3</span>
+        <span class="preparo-texto">Coe com peneira fina, coloque gelo e beba ao longo do dia.</span>
+      </li>
+    </ol>
+  </div>
+
+</div>
+</body>
+</html>
